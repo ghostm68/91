@@ -1,23 +1,19 @@
-import { useState } from 'react';
-import { WebViewFrame } from '@/components/WebViewFrame';
-import { SplashScreen } from '@/components/SplashScreen';
+import { useState, useEffect } from "react";
+import LoadingScreen from "@/components/LoadingScreen";
+import MirrorViewer from "@/components/MirrorViewer";
 
 const Index = () => {
-  const [showSplash, setShowSplash] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleSplashComplete = () => {
-    setShowSplash(false);
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
   };
 
-  if (showSplash) {
-    return <SplashScreen onComplete={handleSplashComplete} />;
-  }
-
   return (
-    <WebViewFrame 
-      url="https://inkrealm.info" 
-      title="InkRealm" 
-    />
+    <>
+      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      {!isLoading && <MirrorViewer />}
+    </>
   );
 };
 
