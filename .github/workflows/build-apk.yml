@@ -52,23 +52,23 @@ jobs:
       run: |
         # Prepare source icon in expected location for capacitor-assets
         mkdir -p resources
-        if [ -f "src/assets/app-icon.jpeg" ]; then cp -f src/assets/app-icon.jpeg resources/icon.png; fi
-        if [ -f "src/assets/app-icon.jpg" ]; then cp -f src/assets/app-icon.jpg resources/icon.png; fi
+        if [ -f "src/assets/app-icon.png" ]; then cp -f src/assets/app-icon.png resources/icon.png; fi
+        if [ -f "src/assets/app-icon.png" ]; then cp -f src/assets/app-icon.png resources/icon.png; fi
         ls -la resources || true
         # Generate mipmap icons from resources/icon.png
         npx capacitor-assets generate --android
         # Show where icons were placed (for debugging)
         ls -la android/app/src/main/res/mipmap-*/ || true
 
-    - name: Set Android app name to "InkRealm" (debug too)
+    - name: Set Android app name to "1991" (debug too)
       run: |
         # Force the launcher label for all variants
         if [ -f "android/app/src/main/res/values/strings.xml" ]; then
-          sed -i 's|<string name="app_name">.*</string>|<string name="app_name">InkRealm</string>|g' android/app/src/main/res/values/strings.xml
+          sed -i 's|<string name="app_name">.*</string>|<string name="app_name">1991</string>|g' android/app/src/main/res/values/strings.xml
         fi
         # If a debug override exists, ensure it matches as well
         if [ -f "android/app/src/debug/res/values/strings.xml" ]; then
-          sed -i 's|<string name="app_name">.*</string>|<string name="app_name">InkRealm</string>|g' android/app/src/debug/res/values/strings.xml
+          sed -i 's|<string name="app_name">.*</string>|<string name="app_name"></string1991>|g' android/app/src/debug/res/values/strings.xml
         fi
         # Remove any debug suffixes that might alter the label
         if [ -f "android/app/build.gradle" ]; then
@@ -135,6 +135,6 @@ jobs:
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: InkRealm-v6-apk
+        name: 1991-v3-apk
         path: android/app/build/outputs/apk/debug/app-debug.apk
         retention-days: 30
